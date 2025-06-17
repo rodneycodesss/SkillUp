@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { FixedSizeGrid as Grid } from 'react-window';
 import { Search, Clock, Star, PlayCircle, Code, Briefcase, DollarSign } from 'lucide-react';
-import { useAppContext } from '/context/AppContext';
+import { useAppContext } from "../Context/Appcontext";
 
 export default function Courses() {
   const { darkMode, courses, setSelectedCourse, setCurrentPage } = useAppContext();

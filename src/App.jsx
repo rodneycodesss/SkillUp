@@ -1,42 +1,44 @@
-import React from 'react';
-import { AppProvider } from '/context/AppContext';
-import Header from '/components/Header';
-import Sidebar from '/components/Sidebar';
-import Dashboard from '/components/Dashboard';
-import Courses from '/components/Courses';
-import Lesson from '/components/Lesson';
-import Progress from '/components/Progress';
-import Profile from '/components/Profile';
-import { useAppContext } from '/context/AppContext';
+import React from "react";
+import { AppProvider } from "./Context/Appcontext";
+import Header from "./Components/Header";
+import Sidebar from "./Components/Sidebar";
+import Dashboard from "./Components/Dashboard";
+import Courses from "./Components/Courses";
+import Lesson from "./Components/Lesson";
+import Progress from "./Components/Progress";
+import Profile from "./Components/Profile";
+import { useAppContext } from "./Context/Appcontext";
 
 function AppContent() {
   const { darkMode, currentPage } = useAppContext();
-  
+
   const renderPage = () => {
     switch (currentPage) {
-      case 'dashboard':
+      case "dashboard":
         return <Dashboard />;
-      case 'courses':
+      case "courses":
         return <Courses />;
-      case 'lesson':
+      case "lesson":
         return <Lesson />;
-      case 'progress':
+      case "progress":
         return <Progress />;
-      case 'profile':
+      case "profile":
         return <Profile />;
       default:
         return <Dashboard />;
     }
   };
-  
+
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+    <div
+      className={`min-h-screen ${
+        darkMode ? "dark bg-gray-900 text-white" : "bg-gray-50 text-gray-900"
+      }`}
+    >
       <Header />
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 md:ml-64 p-6">
-          {renderPage()}
-        </main>
+        <main className="flex-1 md:ml-64 p-6">{renderPage()}</main>
       </div>
     </div>
   );

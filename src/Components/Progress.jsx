@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppContext } from '/context/AppContext';
+import { useAppContext } from "../Context/Appcontext";
 import { Award, Flame, CheckCircle } from 'lucide-react';
 
 export default function Progress() {

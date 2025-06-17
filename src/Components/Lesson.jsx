@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAppContext } from '/context/AppContext';
+import { useAppContext } from "../Context/Appcontext";
 import { ArrowLeft, Download, CheckCircle } from 'lucide-react';
 
 function getYouTubeEmbedUrl(url) {
@@ -50,9 +50,7 @@ export default function Lesson() {
         </div>
       );
     }
-  }
-
-  const lessons = selectedCourse.lessons || [];
+     const lessons = selectedCourse.lessons || [];
   const lesson = lessons[currentLessonIndex] || lessons[0] || {};
 
   const handleComplete = () => {
@@ -72,10 +70,7 @@ export default function Lesson() {
 
   return (
     <div className="max-w-3xl mx-auto p-4 space-y-6">
-      <button
-        className="flex items-center gap-2 text-purple-600 hover:underline mb-2"
-        onClick={() => setCurrentPage('courses')}
-      >
+      <button className="flex items-center gap-2 text-purple-600 hover:underline mb-2"  onClick={() => setCurrentPage('courses')}>
         <ArrowLeft size={18} /> Back to Courses
       </button>
 
@@ -160,3 +155,6 @@ export default function Lesson() {
       </div>
     </div>
   );
+  }
+
+  

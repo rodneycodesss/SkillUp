@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Moon, Sun, Target, Star, Zap, User } from 'lucide-react';
-import { useAppContext } from '/context/AppContext';
+import { useAppContext } from "../Context/Appcontext";
 
 export default function Header() {
   const { darkMode, toggleDarkMode, setSidebarOpen, user } = useAppContext();

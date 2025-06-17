@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { sampleUser, sampleCourses } from '/Data/sampleData';
+import { sampleUser, sampleCourses } from "../Data/Sampledata";
 
 const AppContext = createContext();
 

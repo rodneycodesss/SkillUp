@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, Target, BookOpen, Trophy, User, Zap } from 'lucide-react';
-import { useAppContext } from '/context/AppContext';
+import { useAppContext } from "../Context/Appcontext";
 
 export default function Sidebar() {
   const { darkMode, currentPage, setCurrentPage, sidebarOpen, setSidebarOpen } = useAppContext();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trophy, Target, Star, ArrowRight, Award, Code, Briefcase, DollarSign } from 'lucide-react';
-import { useAppContext } from '/context/AppContext';
+import { useAppContext } from "../Context/Appcontext";
 
 export default function Dashboard() {
   const { darkMode, user, courses, setCurrentPage, setSelectedCourse } = useAppContext();

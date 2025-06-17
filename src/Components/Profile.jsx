@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useAppContext } from '/context/AppContext';
+import { useAppContext } from "../Context/Appcontext";
 import { User, Mail, Award, Flame, Edit, LogOut } from 'lucide-react';
-import { auth } from '../firebase'; // Adjust if your firebase export is different
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signOut,
-} from 'firebase/auth';
+// import { auth } from '../firebase'; // Adjust if your firebase export is different
+// import {
+//   signInWithEmailAndPassword,
+//   createUserWithEmailAndPassword,
+//   updateProfile,
+//   signOut,
+// } from 'firebase/auth';
 
 export default function Profile() {
   const { user, xp, streak, darkMode, setUser } = useAppContext();
