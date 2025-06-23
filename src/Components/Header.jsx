@@ -23,19 +23,16 @@ export default function Header() {
         <div className="hidden sm:flex items-center gap-2 text-sm">
           <div className="flex items-center gap-1">
             <Target size={16} className="text-orange-500" />
-            <span>{user.streak} day streak</span>
+            <span>{user?.streak ?? 0} day streak</span>
           </div>
           <div className="flex items-center gap-1">
             <Star size={16} className="text-yellow-500" />
-            <span>{user.xp} XP</span>
+            <span>{user?.xp ?? 0} XP</span>
           </div>
         </div>
         <button onClick={toggleDarkMode} className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
           {darkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>
-        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-          <User className="text-white" size={16} />
-        </div>
       </div>
     </header>
   );

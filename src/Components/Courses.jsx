@@ -1,148 +1,129 @@
-import React, { useState, useRef } from 'react';
-import { FixedSizeGrid as Grid } from 'react-window';
-import { Search, Clock, Star, PlayCircle, Code, Briefcase, DollarSign } from 'lucide-react';
-import { useAppContext } from "../Context/Appcontext";
+import React, { useState, useEffect } from 'react';
+import { useAppContext } from '../Context/Appcontext';
+import {
+  Search,
+  Clock,
+  Star,
+  PlayCircle,
+  Code,
+  Briefcase,
+  DollarSign
+} from 'lucide-react';
 
 export default function Courses() {
   const { darkMode, courses, setSelectedCourse, setCurrentPage } = useAppContext();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const gridRef = useRef();
+  const [category, setCategory] = useState('All');
 
   const categories = ['All', 'Tech', 'Hustles', 'Personal Finance'];
 
   const filteredCourses = courses.filter(course => {
-    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      course.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || course.category === selectedCategory;
-    return matchesSearch && matchesCategory;
+    const matchCategory = category === 'All' || course.category === category;
+    const matchSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        course.description.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchCategory && matchSearch;
   });
-
-  // Responsive columns
-  const getColumnCount = () => {
-    if (window.innerWidth < 640) return 1; // mobile
-    if (window.innerWidth < 1024) return 2; // tablet
-    return 3; // desktop
-  };
-
-  const [columnCount, setColumnCount] = useState(getColumnCount());
-
-  React.useEffect(() => {
-    const handleResize = () => setColumnCount(getColumnCount());
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const rowCount = Math.ceil(filteredCourses.length / columnCount);
-  const columnWidth = window.innerWidth < 640 ? window.innerWidth - 32 : 340; // px
-  const rowHeight = 260; // px
-
-  const Cell = ({ columnIndex, rowIndex, style }) => {
-    const idx = rowIndex * columnCount + columnIndex;
-    if (idx >= filteredCourses.length) return null;
-    const course = filteredCourses[idx];
-    return (
-      <div
-        style={style}
-        className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer m-2`}
-        onClick={() => {
-          setSelectedCourse(course);
-          setCurrentPage('lesson');
-        }}
-      >
-        <div className="p-6 h-full flex flex-col">
-          <div className="flex items-center gap-2 mb-3">
-            {course.category === 'Tech' && <Code size={20} className="text-blue-500" />}
-            {course.category === 'Hustles' && <Briefcase size={20} className="text-green-500" />}
-            {course.category === 'Personal Finance' && <DollarSign size={20} className="text-yellow-500" />}
-            <span className="text-sm font-medium text-gray-600 dark:text-gray-400">{course.category}</span>
-          </div>
-          <h3 className="text-lg font-semibold mb-2">{course.title}</h3>
-          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 flex-1">{course.description}</p>
-          <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-4">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1">
-                <Clock size={14} />
-                <span>{course.duration} min</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Star size={14} className="text-yellow-400" />
-                <span>{course.rating || 'N/A'}</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-1">
-              <PlayCircle size={16} />
-              <span>{course.lessonsCount || 0} lessons</span>
-            </div>
-          </div>
-          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-            <div
-              className="bg-purple-500 h-2 rounded-full transition-all"
-              style={{ width: `${course.progress || 0}%` }}
-            ></div>
-          </div>
-          <div className="text-xs text-right mt-1 text-gray-500 dark:text-gray-400">
-            {course.progress || 0}% completed
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div className="space-y-6">
+      {/* Title */}
       <div>
-        <h2 className="text-2xl font-bold mb-2">Explore Courses</h2>
-        <p className="text-gray-600 dark:text-gray-400">Discover bite-sized lessons to boost your skills</p>
+        <h2 className="text-2xl font-bold mb-1">Explore Courses</h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Browse and start learning today.
+        </p>
       </div>
-      {/* Search and Filters */}
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="flex-1 relative">
-          <Search className="absolute left-3 top-3 text-gray-400" size={20} />
+
+      {/* Search & Filters */}
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+        <div className="relative flex-1 w-full">
+          <Search className="absolute top-3 left-3 text-gray-400" size={18} />
           <input
             type="text"
             placeholder="Search courses..."
+            className={`w-full pl-10 pr-4 py-2 rounded-lg border text-sm ${
+              darkMode
+                ? 'bg-gray-800 text-white border-gray-600'
+                : 'bg-white border-gray-300 text-gray-800'
+            } focus:outline-none focus:ring-2 focus:ring-purple-500`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className={`w-full pl-10 pr-4 py-2 rounded-lg border ${
-              darkMode ? 'bg-gray-800 border-gray-600 text-white' : 'bg-white border-gray-300'
-            } focus:outline-none focus:ring-2 focus:ring-purple-500`}
           />
         </div>
+
         <div className="flex gap-2 flex-wrap">
-          {categories.map(category => (
+          {categories.map(cat => (
             <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg transition-colors ${
-                selectedCategory === category
-                  ? 'bg-purple-500 text-white'
-                  : `${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-700'} hover:bg-gray-100 dark:hover:bg-gray-700`
+              key={cat}
+              onClick={() => setCategory(cat)}
+              className={`px-4 py-2 rounded-full text-sm transition ${
+                category === cat
+                  ? 'bg-purple-600 text-white'
+                  : darkMode
+                  ? 'bg-gray-700 text-white hover:bg-gray-600'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
-              {category}
+              {cat}
             </button>
           ))}
         </div>
       </div>
-      {/* Virtualized Course Grid */}
-      <div style={{ width: '100%', height: rowCount === 0 ? 100 : Math.min(rowCount * rowHeight, 800) }}>
+
+      {/* Courses Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredCourses.length === 0 ? (
-          <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-10">
+          <div className="col-span-full text-center text-gray-500 dark:text-gray-400 py-12">
             No courses found.
           </div>
         ) : (
-          <Grid
-            ref={gridRef}
-            columnCount={columnCount}
-            columnWidth={columnWidth}
-            height={Math.min(rowCount * rowHeight, 800)}
-            rowCount={rowCount}
-            rowHeight={rowHeight}
-            width={columnCount * columnWidth}
-          >
-            {Cell}
-          </Grid>
+          filteredCourses.map(course => (
+            <div
+              key={course.id}
+              onClick={() => {
+                setSelectedCourse(course);
+                setCurrentPage('lesson');
+              }}
+              className={`cursor-pointer rounded-xl p-5 shadow hover:shadow-xl transition ${
+                darkMode ? 'bg-gray-800' : 'bg-white'
+              }`}
+            >
+              <div className="flex items-center gap-2 text-sm mb-2">
+                {course.category === 'Tech' && <Code size={18} className="text-blue-500" />}
+                {course.category === 'Hustles' && <Briefcase size={18} className="text-green-500" />}
+                {course.category === 'Personal Finance' && <DollarSign size={18} className="text-yellow-500" />}
+                <span className="text-gray-500 dark:text-gray-300">{course.category}</span>
+              </div>
+
+              <h3 className="font-semibold text-lg mb-1">{course.title}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                {course.description}
+              </p>
+
+              <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-300 mb-2">
+                <span className="flex items-center gap-1">
+                  <Clock size={14} /> {course.duration} min
+                </span>
+                <span className="flex items-center gap-1">
+                  <Star size={14} className="text-yellow-400" /> {course.rating || 'N/A'}
+                </span>
+                <span className="flex items-center gap-1">
+                  <PlayCircle size={14} /> {course.lessonsCount || 0} lessons
+                </span>
+              </div>
+
+              <div className="w-full bg-gray-200 dark:bg-gray-700 h-2 rounded-full">
+                <div
+                  className="bg-purple-500 h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${course.progress || 0}%` }}
+                ></div>
+              </div>
+
+              <div className="text-xs text-right text-gray-400 mt-1">
+                {course.progress || 0}% complete
+              </div>
+            </div>
+          ))
         )}
       </div>
     </div>

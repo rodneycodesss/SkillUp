@@ -1,115 +1,93 @@
 export const sampleCourses = [
   {
     id: 1,
-    title: "Introduction to Web Development",
+    title: "Intro to Web Development",
+    description: "Learn the basics of HTML, CSS, and JavaScript.",
     category: "Tech",
-    duration: "15 min",
     level: "Beginner",
-    description: "Learn the basics of HTML, CSS, and JavaScript",
-    progress: 60,
-    rating: 4.8,
-    enrolled: 1234,
+    thumbnail: "https://img.youtube.com/vi/bWPMSSsVdPk/0.jpg",
+    duration: 45,
+    rating: 4.5,
+    progress: 20,
+    lessonsCount: 3,
     lessons: [
-      { id: 1, title: "What is Web Development?", duration: "3 min", completed: true },
-      { id: 2, title: "HTML Basics", duration: "4 min", completed: true },
-      { id: 3, title: "CSS Fundamentals", duration: "4 min", completed: false },
-      { id: 4, title: "JavaScript Introduction", duration: "4 min", completed: false }
+      {
+        id: 101,
+        title: "HTML Basics",
+        videoUrl: "https://www.youtube.com/watch?v=bWPMSSsVdPk",
+        transcript: "In this lesson, we cover the structure of HTML documents...",
+        completed: true
+      },
+      {
+        id: 102,
+        title: "CSS Fundamentals",
+        videoUrl: "https://www.youtube.com/watch?v=yfoY53QXEnI",
+        transcript: "This lesson explains how to style HTML using CSS...",
+        completed: false
+      },
+      {
+        id: 103,
+        title: "JavaScript Essentials",
+        videoUrl: "https://www.youtube.com/watch?v=PkZNo7MFNFg",
+        transcript: "Learn how to use variables, functions, and loops in JS...",
+        completed: false
+      }
     ]
   },
   {
     id: 2,
-    title: "Starting Your Side Hustle",
+    title: "Start a Small Hustle",
+    description: "Practical guide to launching your first side hustle.",
     category: "Hustles",
-    duration: "12 min",
-    level: "Beginner",
-    description: "Practical steps to launch your business in Africa",
-    progress: 25,
-    rating: 4.9,
-    enrolled: 2156,
+    level: "Intermediate",
+    thumbnail: "https://img.youtube.com/vi/Fqch5OrUPvA/0.jpg",
+    duration: 30,
+    rating: 4.0,
+    progress: 50,
+    lessonsCount: 2,
     lessons: [
-      { id: 1, title: "Identifying Opportunities", duration: "3 min", completed: true },
-      { id: 2, title: "Market Research", duration: "3 min", completed: false },
-      { id: 3, title: "Building Your MVP", duration: "3 min", completed: false },
-      { id: 4, title: "Finding Customers", duration: "3 min", completed: false }
+      {
+        id: 201,
+        title: "Choosing the Right Hustle",
+        videoUrl: "https://www.youtube.com/watch?v=Fqch5OrUPvA",
+        transcript: "This lesson helps you find a hustle that matches your strengths...",
+        completed: true
+      },
+      {
+        id: 202,
+        title: "Marketing for Beginners",
+        videoUrl: "https://www.youtube.com/watch?v=brcHK3P6ChQ",
+        transcript: "An intro to promoting your hustle using social media...",
+        completed: false
+      }
     ]
   },
   {
     id: 3,
-    title: "Personal Finance Basics",
+    title: "Money Basics for Youth",
+    description: "Understand saving, budgeting, and growing your money.",
     category: "Personal Finance",
-    duration: "18 min",
     level: "Beginner",
-    description: "Money management skills for young Africans",
+    thumbnail: "https://img.youtube.com/vi/t4wYwNl5vbE/0.jpg",
+    duration: 25,
+    rating: 4.2,
     progress: 0,
-    rating: 4.7,
-    enrolled: 3421,
+    lessonsCount: 2,
     lessons: [
-      { id: 1, title: "Budgeting 101", duration: "4 min", completed: false },
-      { id: 2, title: "Saving Strategies", duration: "4 min", completed: false },
-      { id: 3, title: "Investment Basics", duration: "5 min", completed: false },
-      { id: 4, title: "Building Credit", duration: "5 min", completed: false }
-    ]
-  },
-  {
-    id: 4,
-    title: "Mobile App Development with React Native",
-    category: "Tech",
-    duration: "20 min",
-    level: "Intermediate",
-    description: "Build mobile apps for Android and iOS",
-    progress: 0,
-    rating: 4.6,
-    enrolled: 892,
-    lessons: [
-      { id: 1, title: "React Native Setup", duration: "5 min", completed: false },
-      { id: 2, title: "Components and Navigation", duration: "5 min", completed: false },
-      { id: 3, title: "State Management", duration: "5 min", completed: false },
-      { id: 4, title: "Publishing Your App", duration: "5 min", completed: false }
-    ]
-  },
-  {
-    id: 5,
-    title: "Digital Marketing for Small Business",
-    category: "Hustles",
-    duration: "16 min",
-    level: "Beginner",
-    description: "Grow your business online with digital marketing",
-    progress: 0,
-    rating: 4.5,
-    enrolled: 1567,
-    lessons: [
-      { id: 1, title: "Social Media Strategy", duration: "4 min", completed: false },
-      { id: 2, title: "Content Creation", duration: "4 min", completed: false },
-      { id: 3, title: "Email Marketing", duration: "4 min", completed: false },
-      { id: 4, title: "Analytics and Growth", duration: "4 min", completed: false }
-    ]
-  },
-  {
-    id: 6,
-    title: "Cryptocurrency and Blockchain Basics",
-    category: "Personal Finance",
-    duration: "14 min",
-    level: "Beginner",
-    description: "Understand digital currencies and blockchain technology",
-    progress: 0,
-    rating: 4.4,
-    enrolled: 2103,
-    lessons: [
-      { id: 1, title: "What is Cryptocurrency?", duration: "4 min", completed: false },
-      { id: 2, title: "How Blockchain Works", duration: "3 min", completed: false },
-      { id: 3, title: "Safe Trading Practices", duration: "4 min", completed: false },
-      { id: 4, title: "Future of Digital Money", duration: "3 min", completed: false }
+      {
+        id: 301,
+        title: "Budgeting 101",
+        videoUrl: "https://www.youtube.com/watch?v=t4wYwNl5vbE",
+        transcript: "This lesson covers basic budgeting principles...",
+        completed: false
+      },
+      {
+        id: 302,
+        title: "Saving vs Investing",
+        videoUrl: "https://www.youtube.com/watch?v=w5HoS1p7QHY",
+        transcript: "Learn the difference between saving and investing...",
+        completed: false
+      }
     ]
   }
 ];
-
-export const sampleUser = {
-  name: "Amara Okonkwo",
-  email: "amara@example.com",
-  streak: 7,
-  xp: 2450,
-  level: 3,
-  badges: ["First Course", "Week Warrior", "Tech Explorer", "Finance Guru"],
-  completedCourses: 2,
-  totalCourses: 15
-};
